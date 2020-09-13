@@ -1,0 +1,60 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="jumbotron shadow" *ngIf="!loading">
+  <div class="container">
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+      <div style="margin-right: 2rem;">
+        <img [src]="list.images | noimage" alt="" class="shadow" style="width: 150px; border-radius: 10px;">
+      </div>
+      <div class="text-white">
+        <h3 class="display-3"><b>{{list.name}}</b></h3>
+        <p>
+          <a [href]="list.external_urls.spotify" target="_blank" style="color: #57B25D"><i
+              class="fab fa-spotify"></i></a>
+        </p>
+        <p>{{list.description}}</p>
+        <small class="text-muted">Seguidores: {{list.followers.total | number}} </small><br>
+      </div>
+      <div class="text-right" style="flex-grow: 2;">
+        <a routerLink="/home" style="color: #57B25D"><i class="fas fa-arrow-left"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-loader *ngIf="loadingTracks"></app-loader>
+<div class="container animated fadeIn" *ngIf="tracks">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Album</th>
+            <th scope="col">Cancion</th>
+            <th scope="col">Popularidad</th>
+            <th scope="col">Vista previa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let track of tracks">
+            <td>
+              <img class="shadow" [src]="track.track.album.images | noimage" alt="..."
+                style="height: 50px; border-radius: 10px;">
+            </td>
+            <td>{{track.track.album.name}}</td>
+            <td>{{track.track.name}}</td>
+            <td class="text-center">
+              <p>{{track.track.popularity | number}}</p>
+            </td>
+            <td>
+              <iframe [src]="track.track.id | domseguro:'https://open.spotify.com/embed/track'" width="300" height="80"
+                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

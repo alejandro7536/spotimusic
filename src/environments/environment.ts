@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  spotiappClientId: 'fb2237f155e8460aa40e606b19e84b96',
+  spotiappClientSecret: '99ccbf6dc7d04c0faf6c6911923944ca'
 };
 
 /*

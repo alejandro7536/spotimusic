@@ -3,14 +3,33 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HomeComponent } from './components/home/home.component';
+import { SearchComponent } from './components/search/search.component';
+import { ArtistaComponent } from './components/artista/artista.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NoimagePipe } from './pipes/noimage.pipe';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    SearchComponent,
+    ArtistaComponent,
+    NavbarComponent,
+    NoimagePipe,
+    LoaderComponent,
+    PlaylistComponent,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

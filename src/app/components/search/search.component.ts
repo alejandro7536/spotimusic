@@ -11,7 +11,8 @@ export class SearchComponent implements OnInit {
 
   public artistas: any[] = [];
   public tracks: any[] = [];
-  loading = false;
+  public loading = false;
+  public trackSelected: any = null;
 
   constructor(
     private spotify: SpotifyService,
@@ -23,10 +24,8 @@ export class SearchComponent implements OnInit {
 
   buscar(termino: string) {
     this.loading = true;
-    console.log(termino);
     this.spotify.buscarArtista(termino).subscribe(
       data => {
-        console.log('artistas', data);
         this.artistas = data;
         this.loading = false;
       },
@@ -37,7 +36,6 @@ export class SearchComponent implements OnInit {
     );
     this.spotify.buscarTracks(termino).subscribe(
       data => {
-        console.log(data);
         this.tracks = data;
         this.loading = false;
       },
@@ -50,6 +48,12 @@ export class SearchComponent implements OnInit {
 
   verArtista(id: string) {
     this.router.navigate(['/artist', id]);
+
+  }
+
+  selecTrack(track: any) {
+    this.trackSelected = track;
+    console.log(track);
 
   }
 }

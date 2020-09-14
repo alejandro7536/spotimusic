@@ -24,13 +24,14 @@
 
 
 <app-loader *ngIf="loadingTracks"></app-loader>
-<div class="container animated fadeIn" *ngIf="tracks">
+<div class="container animated fadeIn" *ngIf="tracks.length > 0">
   <div class="row">
     <div class="table-responsive">
       <table class="table table-borderless">
         <thead>
           <tr>
             <th scope="col">Foto</th>
+            <th scope="col">Artista/as</th>
             <th scope="col">Album</th>
             <th scope="col">Cancion</th>
             <th scope="col">Popularidad</th>
@@ -42,6 +43,11 @@
             <td>
               <img class="shadow" [src]="track.track.album.images | noimage" alt="..."
                 style="height: 50px; border-radius: 10px;">
+            </td>
+
+            <td>
+              <span *ngFor="let artist of track.track.artists" class="badge"
+              style="margin-left: 0; margin-right: 2px; background-color: #57B25D; color: white;">{{artist.name}}</span>
             </td>
             <td>{{track.track.album.name}}</td>
             <td>{{track.track.name}}</td>

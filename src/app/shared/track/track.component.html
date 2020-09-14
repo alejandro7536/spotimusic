@@ -1,0 +1,24 @@
+<div class="modal-header animated fadeIn"  *ngIf="track">
+  <h3 class="modal-title" id="exampleModalLabel">{{track.name}}</h3>
+  <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span style="color: #57B25D" aria-hidden="true">&times;</span>
+  </a>
+</div>
+<div class="modal-body" style="margin: 0; padding: 0;">
+  <app-loader *ngIf="!track"></app-loader>
+
+  <div *ngIf="track" class="animated madeIn">
+    <iframe [src]="track.id | domseguro:'https://open.spotify.com/embed/track'" width="100%" height="500"
+      frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
+
+  <div class="container mb-3 mt-3 animated madeIn">
+    <h4 class="text-muted">{{track.album.name}}</h4>
+    <small class="text-muted">{{track.duration_ms/1000/60 | number:'.1-1'}} min | popularidad:
+      {{track.popularity}}</small><br>
+    <span *ngFor="let artist of track.artists" class="badge"
+      style="margin-left: 0; margin-right: 2px; background-color: #57B25D; color: white;">{{artist.name}}</span>
+
+  </div>
+</div>
+

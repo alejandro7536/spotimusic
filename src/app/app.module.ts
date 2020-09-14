@@ -13,6 +13,7 @@ import { NoimagePipe } from './pipes/noimage.pipe';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { TrackComponent } from './shared/track/track.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DomseguroPipe } from './pipes/domseguro.pipe';
     NoimagePipe,
     LoaderComponent,
     PlaylistComponent,
-    DomseguroPipe
+    DomseguroPipe,
+    TrackComponent
   ],
   imports: [
     BrowserModule,

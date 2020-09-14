@@ -8,6 +8,7 @@ import { SpotifyService } from './services/spotify.service';
 })
 export class AppComponent {
   title = 'spotiapp';
+  year = new Date().getFullYear();
 
   constructor(
     private spotifyService: SpotifyService

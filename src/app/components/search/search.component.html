@@ -1,18 +1,21 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <input class="form-control is-valid" type="text" placeholder="Buscar artista o canción" #termino
+      <input class="form-control" type="text" placeholder="Buscar artista o canción" #termino
         (keyup)="buscar(termino.value)">
     </div>
   </div>
 
-  <app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="tracks.length == 0 "></app-loader>
 
 
   <div class="row mt-5" *ngIf="tracks.length > 0 ">
     <h2 class="display-5 mb-3">Canciones encontradas</h2>
     <div class="card-columns">
-      <div class="card border-0 shadow animated fadeIn" *ngFor="let track of tracks" style="border-radius: 10px;">
+      <div (click)="selecTrack(track)"
+          class="card border-0 shadow animated fadeIn puntero"
+          data-toggle="modal" data-target="#track" *ngFor="let track of tracks"
+          style="border-radius: 10px;">
         <img [src]="track.album.images | noimage" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title" style="margin-bottom: 0;">{{track.name}}</h5>
@@ -38,6 +41,16 @@
 
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="track" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <app-track [track]="trackSelected"></app-track>
     </div>
   </div>
 </div>

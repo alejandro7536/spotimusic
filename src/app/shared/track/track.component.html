@@ -12,7 +12,7 @@
       frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
 
-  <div class="container mb-3 mt-3 animated madeIn">
+  <div class="container mb-3 mt-3 animated madeIn" *ngIf="track" >
     <h4 class="text-muted">{{track.album.name}}</h4>
     <small class="text-muted">{{track.duration_ms/1000/60 | number:'.1-1'}} min | popularidad:
       {{track.popularity}}</small><br>

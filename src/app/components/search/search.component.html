@@ -8,43 +8,42 @@
 
   <app-loader *ngIf="tracks.length == 0 "></app-loader>
 
-
-  <div class="row mt-5" *ngIf="tracks.length > 0 ">
-    <h2 class="display-5 mb-3">Canciones encontradas</h2>
-    <div class="card-columns">
-      <div (click)="selecTrack(track)"
-          class="card border-0 shadow animated fadeIn puntero"
-          data-toggle="modal" data-target="#track" *ngFor="let track of tracks"
-          style="border-radius: 10px;">
-        <img [src]="track.album.images | noimage" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title" style="margin-bottom: 0;">{{track.name}}</h5>
-          <small class="text-muted">{{track.album.name}}</small><br>
-          <small class="text-muted">{{track.duration_ms/1000/60 | number:'.1-1'}} min | popularidad:
-            {{track.popularity}}</small><br>
+  <div class="container">
+    <div class="row mt-5" *ngIf="tracks.length > 0 ">
+      <h2 class="display-5 mb-3">Canciones encontradas</h2>
+      <div class="card-columns">
+        <div (click)="selecTrack(track)" class="card border-0 shadow animated fadeIn puntero" data-toggle="modal"
+          data-target="#track" *ngFor="let track of tracks" style="border-radius: 10px;">
+          <img [src]="track.album.images | noimage" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="margin-bottom: 0;">{{track.name}}</h5>
+            <small class="text-muted">{{track.album.name}}</small><br>
+            <small class="text-muted">{{track.duration_ms/1000/60 | number:'.1-1'}} min | popularidad:
+              {{track.popularity}}</small><br>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5" *ngIf="artistas.length > 0 ">
-    <h2 class="display-5 mb-3">Artistas encontrados</h2>
-    <div class="card-columns">
-      <div (click)="verArtista(artista.id)" class="card border-0 shadow animated fadeIn puntero" *ngFor="let artista of artistas" style="border-radius: 10px;">
-        <img [src]="artista.images | noimage" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title" style="margin-bottom: 0;">{{artista.name}}</h5>
-          <span *ngFor="let genero of artista.genres" class="badge badge-success"
-            style="margin-left: 0; margin-right: 2px;">{{genero}} </span><br>
-          <small class="text-muted">Seguidores: {{artista.followers.total | number}} | popularidad:
-            {{artista.popularity}}</small><br>
+    <div class="row mt-5" *ngIf="artistas.length > 0 ">
+      <h2 class="display-5 mb-3">Artistas encontrados</h2>
+      <div class="card-columns">
+        <div (click)="verArtista(artista.id)" class="card border-0 shadow animated fadeIn puntero"
+          *ngFor="let artista of artistas" style="border-radius: 10px;">
+          <img [src]="artista.images | noimage" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" style="margin-bottom: 0;">{{artista.name}}</h5>
+            <span *ngFor="let genero of artista.genres" class="badge badge-success"
+              style="margin-left: 0; margin-right: 2px;">{{genero}} </span><br>
+            <small class="text-muted">Seguidores: {{artista.followers.total | number}} | popularidad:
+              {{artista.popularity}}</small><br>
 
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="track" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -16,7 +16,7 @@ export class SpotifyService {
     const url = `https://api.spotify.com/v1/${query}`;
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQClqzl7nyDbq7jYBaxKdJBRkB0XDf6nahar7PCLhd8H6YWAATv7C_47uHUj9e3C2SL1BfdeJyDvjXH3E20'
+      'Authorization': localStorage.getItem('token')
     });
 
     return this.http.get<any>(url, { headers });
@@ -67,24 +67,12 @@ export class SpotifyService {
 
   login() {
 
-    let spotifyUrl = 'https://accounts.spotify.com/api/token';
+    let spotifyUrl = `https://spoty-server-login.herokuapp.com/spotify/${environment.spotiappClientId}/${environment.spotiappClientSecret}`;
 
-    let params = new HttpParams()
-      .set('client_id', environment.spotiappClientId)
-      .set('client_secret', environment.spotiappClientSecret);
-
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/x-www-form-urlencoded')
-
-    this.http.post<any>(spotifyUrl, {
-      params,
-      headers,
-      json: true
-    }).subscribe(data => {
-      console.log('login');
-      console.log(data);
-
-
+    this.http.get<any>(spotifyUrl).subscribe(data => {
+      const token = `${data.token_type} ${data.access_token}`;
+      localStorage.setItem('token', token);
+      console.log('login success');
     });
   }
 

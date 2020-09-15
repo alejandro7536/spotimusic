@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +22,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spotifyService.getTracksCristianos().subscribe(data => {
-      console.log(data);
-      this.playlists = data;
-      this.loading = false;
+    const timer$ = timer(2000).subscribe(() =>{
+      this.spotifyService.getTracksCristianos().subscribe(data => {
+        this.playlists = data;
+        this.loading = false;
+      });
     });
+
   }
 
   verPlaylist(id: string) {

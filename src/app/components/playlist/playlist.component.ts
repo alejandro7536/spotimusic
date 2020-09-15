@@ -34,8 +34,6 @@ export class PlaylistComponent implements OnInit {
     this.spotify.getPlaylist(id).subscribe(
       list => {
         this.list = list;
-        console.log(list);
-
         this.loading = false;
       }
     );
@@ -49,7 +47,6 @@ export class PlaylistComponent implements OnInit {
       tracks => {
         this.tracks = tracks;
         this.loadingTracks = false;
-        console.log(tracks);
       }
     );
   }

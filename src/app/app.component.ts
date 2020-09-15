@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { interval, timer } from 'rxjs';
 import { SpotifyService } from './services/spotify.service';
 
 @Component({
@@ -14,6 +15,10 @@ export class AppComponent {
     private spotifyService: SpotifyService
   ) {
     this.spotifyService.login();
+    const timerlogin$ = interval(3600000).subscribe(() => {
+      this.spotifyService.login();
+      console.log('Se renovó el token');
+    });
 
   }
 }

@@ -40,7 +40,8 @@ export class SpotifyService {
     );
   }
 
-  getTracksCristianos() {
+ getTracksCristianos() {
+
     return this.getQuery('search?q=cristiana&type=playlist').pipe(
       map(data => data.playlists.items)
     );

@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const timer$ = timer(2000).subscribe(() =>{
+
+    const timer$ = timer(5000).subscribe(() => {
       this.spotifyService.getTracksCristianos().subscribe(data => {
         this.playlists = data;
         this.loading = false;
